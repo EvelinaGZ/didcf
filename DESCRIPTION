@@ -1,14 +1,15 @@
 Package: didcf
-Title: What the Package Does (One Line, Title Case)
-Version: 0.0.0.9000
+Title: Difference-in-Difference Causal Forests
+Version: 1.0.0.0
 Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+    person("Evelina", "Gavrilova", , "evelina.zoutman@gmail.com", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0002-9349-5422"))
+Description: This package incorporated the algorithm for performing Difference-in-Difference Causal Forests
+            from Gavrilova, Langorgen, Zoutman (2025).  
+License: `use_mit_license()`
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.1
 URL: https://github.com/EvelinaGZ/didcf
 BugReports: https://github.com/EvelinaGZ/didcf/issues
+Imports: grf
