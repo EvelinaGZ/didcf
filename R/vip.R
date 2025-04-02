@@ -1,11 +1,16 @@
-#Function that extract the variable importance in a data frame
-#and produces a table with variable name and value,
-# in a descending order by value
 
-#' @param forest a causal forest estimate list
+#' Title
+#'
+#' @param forest GRF forest object of type causal_forest, a causal forest estimate
+#'
+#' @return A table with two columns, variable names and values of variables importance
+#' @export
+#'
+#' @examples
+#' my_table<-vip(my_forest)
+#'
 
 vip <- function(forest) {
-  require(grf)
   amazing_matrix<-forest%>%
     variable_importance()%>%
     as.data.frame()%>%
