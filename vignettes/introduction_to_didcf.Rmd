@@ -4,7 +4,7 @@ author: Evelina Gavrilova
 date: "2025-04-02"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{introduction_to_didcf}
+  %\VignetteIndexEntry{Introduction to didcf}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
