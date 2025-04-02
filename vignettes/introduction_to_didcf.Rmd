@@ -1,5 +1,5 @@
 ---
-title: "Introduction to DiDCF"
+title: "Introduction to didcf"
 author: Evelina Gavrilova
 date: "2025-04-02"
 output: rmarkdown::html_vignette
@@ -14,6 +14,7 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
+library(dplyr)
 ```
 
 ```{r setup}
@@ -44,7 +45,7 @@ The function `estimate_DiDCF` takes in your data and estimates difference-in-dif
 
 
 ```{r}
-estimate_DiDCF(example_data$Y, 
+estimate_didcf(example_data$Y, 
                example_data$t_indicator[example_data$period==1], 
                model.matrix(~.,data=example_data[example_data$period==1,c("x_1","x_2")]), 
                1, 
@@ -66,7 +67,7 @@ The example can be found also in the help file related to the function. The inpu
 The function `vip` is a handy tool to extract a table from the variable importance feature of the estimated causal forest. The table contains variable names and their respective importance values, sorted in descending order.
 
 ```{r}
-my_forest<-estimate_DiDCF(example_data$Y, 
+my_forest<-estimate_didcf(example_data$Y, 
                example_data$t_indicator[example_data$period==1], 
                model.matrix(~.,data=example_data[example_data$period==1,c("x_1","x_2")]), 
                1, 

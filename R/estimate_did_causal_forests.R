@@ -20,14 +20,14 @@
 #' @return A list of causal forest objects (one for each time period other than the base period).
 #' @import grf
 #' @examples
-#' estimate_DiDCF(example_data$Y,
+#' estimate_didcf(example_data$Y,
 #'                example_data$t_indicator[example_data$period==1],
 #'                model.matrix(~.,data=example_data[example_data$period==1,c("x_1","x_2")]),
 #'                1,
 #'                example_data$period,
 #'                example_data$unit_id)
 #' @export
-estimate_DiDCF <- function(Y, W, X, b, time, id, ...) {
+estimate_didcf <- function(Y, W, X, b, time, id, ...) {
 
   if (!requireNamespace("grf", quietly = TRUE)) {
     stop("The package 'grf' is required but not installed. Please install it using install.packages('grf').")

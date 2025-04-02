@@ -1,5 +1,5 @@
 
-#' Title
+#' Variable importance table
 #'
 #' @param forest GRF forest object of type causal_forest, a causal forest estimate
 #'
