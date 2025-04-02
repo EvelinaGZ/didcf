@@ -4,8 +4,8 @@ Version: 1.0.0.0
 Authors@R: 
     person("Evelina", "Gavrilova", , "evelina.zoutman@gmail.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-9349-5422"))
-Description: This package incorporated the algorithm for performing Difference-in-Difference Causal Forests
-            from Gavrilova, Langorgen, Zoutman (2025).  
+Description: This package automates the algorithm for performing Difference-in-Difference Causal Forests
+            from Gavrilova, Evelina, Audun Langørgen, and Floris Zoutman. "Difference-in-difference causal forests, with an application to payroll tax incidence in Norway." (2025).  
 License: `use_mit_license()`
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
