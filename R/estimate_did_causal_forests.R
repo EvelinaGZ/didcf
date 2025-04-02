@@ -22,10 +22,10 @@
 #' @examples
 #' estimate_DiDCF(example_data$Y,
 #'                example_data$t_indicator[example_data$period==1],
-#'                as.data.frame(model.matrix(~.,data=example_data[example_data$period==1,c("x_1","x_2")])),
+#'                model.matrix(~.,data=example_data[example_data$period==1,c("x_1","x_2")]),
 #'                1,
-#'                data$period,
-#'                data$unit_id)
+#'                example_data$period,
+#'                example_data$unit_id)
 #' @export
 estimate_DiDCF <- function(Y, W, X, b, time, id, ...) {
 
