@@ -4,12 +4,11 @@
 #' @param forest GRF forest object of type causal_forest, a causal forest estimate
 #'
 #' @return A table with two columns, variable names and values of variables importance
-#' @export
 #'
 #' @examples
 #' my_table<-vip(my_forest)
 #'
-
+#' @export
 vip <- function(forest) {
   amazing_matrix<-forest%>%
     variable_importance()%>%

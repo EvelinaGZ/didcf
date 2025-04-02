@@ -19,7 +19,6 @@
 #'
 #' @return A list of causal forest objects (one for each time period other than the base period).
 #' @import grf
-#' @export
 #' @examples
 #' my_forest<-estimate_DiDCF(example_data$Y,
 #'                example_data$t_indicator[example_data$period==1],
@@ -27,7 +26,7 @@
 #'                1,
 #'                data$period,
 #'                data$unit_id)
-
+#' @export
 estimate_DiDCF <- function(Y, W, X, b, time, id, ...) {
 
   if (!requireNamespace("grf", quietly = TRUE)) {
