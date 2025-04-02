@@ -20,7 +20,7 @@
 #' @return A list of causal forest objects (one for each time period other than the base period).
 #' @import grf
 #' @examples
-#' my_forest<-estimate_DiDCF(example_data$Y,
+#' estimate_DiDCF(example_data$Y,
 #'                example_data$t_indicator[example_data$period==1],
 #'                as.data.frame(model.matrix(~.,data=example_data[example_data$period==1,c("x_1","x_2")])),
 #'                1,
