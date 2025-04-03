@@ -24,14 +24,14 @@ library(didcf)
 
 ## Introduction
 <div style="font-size: 14px;">
-This vignette accompanies the package DiDCF. The algorithms comes from 
+This vignette accompanies the package DiDCF. The algorithm comes from 
 <a href="https://www.cesifo.org/en/publications/2023/working-paper/difference-difference-causal-forests-application-payroll-tax" target="_blank">*Gavrilova, Evelina, Audun Langørgen, and Floris Zoutman. "Difference-in-difference causal forests, with an application to payroll tax incidence in norway." (2025).*</a>
 </div>
 
 ### How to install
 Below I offer two options on how to install the package from GitHub. You can use *devtools* (which needs to be installed beforehand).
 
-```{r}
+```{r, eval=FALSE}
 #install.packages(devtools)
 library(devtools)
 install_github("evelinagz/didcf")
@@ -43,7 +43,7 @@ install_github("evelinagz/didcf")
 The function `estimate_DiDCF` takes in your data and estimates difference-in-difference causal forests. Here is how you can use the function:
 
 
-```{r}
+```{r, eval=FALSE}
 estimate_didcf(example_data$Y, 
                example_data$t_indicator[example_data$period==1], 
                model.matrix(~.,data=example_data[example_data$period==1,c("x_1","x_2")]), 
@@ -65,7 +65,7 @@ The example can be found also in the help file related to the function. The inpu
 
 The function `vip` is a handy tool to extract a table from the variable importance feature of the estimated causal forest. The table contains variable names and their respective importance values, sorted in descending order.
 
-```{r}
+```{r, eval=FALSE}
 my_forest<-estimate_didcf(example_data$Y, 
                example_data$t_indicator[example_data$period==1], 
                model.matrix(~.,data=example_data[example_data$period==1,c("x_1","x_2")]), 
@@ -79,7 +79,7 @@ vip(my_forest[[1]])
 
 The `example_data` dataset included in this package contains a simulated dataset tailored to the payroll example from the paper. Here is how you can load and view the dataset:
 
-```{r}
+```{r, eval=FALSE}
 # Load the example dataset
 data(example_data, package = "didcf")
 
