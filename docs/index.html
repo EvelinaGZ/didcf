@@ -66,33 +66,23 @@
 </nav><div class="container template-home">
 <div class="row">
   <main id="main" class="col-md-9"><div class="sourceCode" id="cb1"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">library</span>(didcf)</span></code></pre></div>
-<div class="section level1">
-<div class="page-header"><h1 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
-</h1></div>
-<p>This vignette accompanies the package DiDCF. The algorithms comes from <em>Gavrilova, Evelina, Audun Langørgen, and Floris Zoutman. “Difference-in-difference causal forests, with an application to payroll tax incidence in norway.” (2025).</em></p>
 <div class="section level2">
-<h2 id="example-data">Example Data<a class="anchor" aria-label="anchor" href="#example-data"></a>
+<h2 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
 </h2>
-<p>The <code>example_data</code> dataset included in this package contains a simulated dataset tailored to the payroll example from the paper. Here is how you can load and view the dataset:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="co"># Load the example dataset</span></span>
-<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="fu">data</span>(example_data, <span class="at">package =</span> <span class="st">"didcf"</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="co"># View the dataset</span></span>
-<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="fu">head</span>(example_data)</span>
-<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a><span class="co">#&gt; # A tibble: 6 × 11</span></span>
-<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a><span class="co">#&gt;   unit_id firm_id period x_1   x_2   firm_variance  fvar treated treat_prob t_indicator     Y</span></span>
-<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a><span class="co">#&gt;     &lt;int&gt;   &lt;int&gt;  &lt;int&gt; &lt;fct&gt; &lt;fct&gt;         &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;</span></span>
-<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a><span class="co">#&gt; 1       1     284      1 1     0               0.8 0.629       0      0.544           0  11.2</span></span>
-<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a><span class="co">#&gt; 2       1     284      2 1     0               0.8 0.629       0      0.544           0  12.3</span></span>
-<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a><span class="co">#&gt; 3       2     336      1 1     0               0.9 0.519       0      0.531           1  10.5</span></span>
-<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a><span class="co">#&gt; 4       2     336      2 1     0               0.9 0.519       1      0.531           1  22.3</span></span>
-<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a><span class="co">#&gt; 5       3     101      1 1     0               0.6 0.567       0      0.472           1  10.2</span></span>
-<span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a><span class="co">#&gt; 6       3     101      2 1     0               0.6 0.567       1      0.472           1  22.9</span></span></code></pre></div>
+<p>This vignette accompanies the package DiDCF. The algorithms comes from <a href="https://www.cesifo.org/en/publications/2023/working-paper/difference-difference-causal-forests-application-payroll-tax" target="_blank" class="external-link"><em>Gavrilova, Evelina, Audun Langørgen, and Floris Zoutman. “Difference-in-difference causal forests, with an application to payroll tax incidence in norway.” (2025).</em></a></p>
+<div class="section level3">
+<h3 id="how-to-install">How to install<a class="anchor" aria-label="anchor" href="#how-to-install"></a>
+</h3>
+<p>Below I offer two options on how to install the package from GitHub. You can use <em>devtools</em> (which needs to be installed beforehand).</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="co">#install.packages(devtools)</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="fu">library</span>(devtools)</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="fu">install_github</span>(<span class="st">"evelinagz/didcf"</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="co">#&gt; Skipping install of 'didcf' from a github remote, the SHA1 (100837d5) has not changed since last install.</span></span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="co">#&gt;   Use `force = TRUE` to force installation</span></span></code></pre></div>
 </div>
-</div>
-<div class="section level1">
-<h1 id="estimate_didcf">Estimate_DiDCF<a class="anchor" aria-label="anchor" href="#estimate_didcf"></a>
-</h1>
+<div class="section level3">
+<h3 id="estimate_didcf">estimate_didcf<a class="anchor" aria-label="anchor" href="#estimate_didcf"></a>
+</h3>
 <p>The function <code>estimate_DiDCF</code> takes in your data and estimates difference-in-difference causal forests. Here is how you can use the function:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">estimate_didcf</span>(example_data<span class="sc">$</span>Y, </span>
 <span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>               example_data<span class="sc">$</span>t_indicator[example_data<span class="sc">$</span>period<span class="sc">==</span><span class="dv">1</span>], </span>
@@ -106,7 +96,7 @@
 <span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a><span class="co">#&gt; Number of training samples: 6400 </span></span>
 <span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a><span class="co">#&gt; Variable importance: </span></span>
 <span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a><span class="co">#&gt;     1     2     3 </span></span>
-<span id="cb3-13"><a href="#cb3-13" tabindex="-1"></a><span class="co">#&gt; 0.000 0.619 0.259</span></span></code></pre></div>
+<span id="cb3-13"><a href="#cb3-13" tabindex="-1"></a><span class="co">#&gt; 0.000 0.626 0.252</span></span></code></pre></div>
 <p>The example can be found also in the help file related to the function. The inputs to the function are the following:</p>
 <ol style="list-style-type: decimal">
 <li>
@@ -123,9 +113,9 @@
 <strong>unit_id</strong> - variable denoting unit id</li>
 </ol>
 </div>
-<div class="section level1">
-<h1 id="vip">vip<a class="anchor" aria-label="anchor" href="#vip"></a>
-</h1>
+<div class="section level3">
+<h3 id="vip">vip<a class="anchor" aria-label="anchor" href="#vip"></a>
+</h3>
 <p>The function <code>vip</code> is a handy tool to extract a table from the variable importance feature of the estimated causal forest. The table contains variable names and their respective importance values, sorted in descending order.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>my_forest<span class="ot">&lt;-</span><span class="fu">estimate_didcf</span>(example_data<span class="sc">$</span>Y, </span>
 <span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>               example_data<span class="sc">$</span>t_indicator[example_data<span class="sc">$</span>period<span class="sc">==</span><span class="dv">1</span>], </span>
@@ -137,9 +127,29 @@
 <span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a><span class="co">#&gt; # A tibble: 3 × 2</span></span>
 <span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a><span class="co">#&gt;   variable      vip</span></span>
 <span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;       &lt;dbl&gt;</span></span>
-<span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a><span class="co">#&gt; 1 x_11        0.621</span></span>
-<span id="cb4-12"><a href="#cb4-12" tabindex="-1"></a><span class="co">#&gt; 2 x_21        0.257</span></span>
+<span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a><span class="co">#&gt; 1 x_11        0.623</span></span>
+<span id="cb4-12"><a href="#cb4-12" tabindex="-1"></a><span class="co">#&gt; 2 x_21        0.255</span></span>
 <span id="cb4-13"><a href="#cb4-13" tabindex="-1"></a><span class="co">#&gt; 3 (Intercept) 0</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="example-data">Example Data<a class="anchor" aria-label="anchor" href="#example-data"></a>
+</h3>
+<p>The <code>example_data</code> dataset included in this package contains a simulated dataset tailored to the payroll example from the paper. Here is how you can load and view the dataset:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="co"># Load the example dataset</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="fu">data</span>(example_data, <span class="at">package =</span> <span class="st">"didcf"</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="co"># View the dataset</span></span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a><span class="fu">head</span>(example_data)</span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a><span class="co">#&gt; # A tibble: 6 × 11</span></span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a><span class="co">#&gt;   unit_id firm_id period x_1   x_2   firm_variance  fvar treated treat_prob t_indicator     Y</span></span>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a><span class="co">#&gt;     &lt;int&gt;   &lt;int&gt;  &lt;int&gt; &lt;fct&gt; &lt;fct&gt;         &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a><span class="co">#&gt; 1       1     284      1 1     0               0.8 0.629       0      0.544           0  11.2</span></span>
+<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a><span class="co">#&gt; 2       1     284      2 1     0               0.8 0.629       0      0.544           0  12.3</span></span>
+<span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a><span class="co">#&gt; 3       2     336      1 1     0               0.9 0.519       0      0.531           1  10.5</span></span>
+<span id="cb5-12"><a href="#cb5-12" tabindex="-1"></a><span class="co">#&gt; 4       2     336      2 1     0               0.9 0.519       1      0.531           1  22.3</span></span>
+<span id="cb5-13"><a href="#cb5-13" tabindex="-1"></a><span class="co">#&gt; 5       3     101      1 1     0               0.6 0.567       0      0.472           1  10.2</span></span>
+<span id="cb5-14"><a href="#cb5-14" tabindex="-1"></a><span class="co">#&gt; 6       3     101      2 1     0               0.6 0.567       1      0.472           1  22.9</span></span></code></pre></div>
+</div>
 </div>
 
   </main><aside class="col-md-3"></aside>

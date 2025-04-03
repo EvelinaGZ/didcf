@@ -85,37 +85,41 @@ Gavrilova</h4>
 <div class="section level2">
 <h2 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
 </h2>
+<div style="font-size: 14px;">
 <p>This vignette accompanies the package DiDCF. The algorithms comes
-from <em>Gavrilova, Evelina, Audun Langørgen, and Floris Zoutman.
-“Difference-in-difference causal forests, with an application to payroll
-tax incidence in norway.” (2025).</em></p>
+from
+<a href="https://www.cesifo.org/en/publications/2023/working-paper/difference-difference-causal-forests-application-payroll-tax" target="_blank" class="external-link"><em>Gavrilova,
+Evelina, Audun Langørgen, and Floris Zoutman. “Difference-in-difference
+causal forests, with an application to payroll tax incidence in norway.”
+(2025).</em></a></p>
+</div>
 <div class="section level3">
-<h3 id="example-data">Example Data<a class="anchor" aria-label="anchor" href="#example-data"></a>
+<h3 id="how-to-install">How to install<a class="anchor" aria-label="anchor" href="#how-to-install"></a>
 </h3>
-<p>The <code>example_data</code> dataset included in this package
-contains a simulated dataset tailored to the payroll example from the
-paper. Here is how you can load and view the dataset:</p>
+<p>Below I offer two options on how to install the package from GitHub.
+You can use <em>devtools</em> (which needs to be installed
+beforehand).</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Load the example dataset</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">example_data</span>, package <span class="op">=</span> <span class="st">"didcf"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># View the dataset</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">example_data</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 11</span></span></span>
-<span><span class="co">#&gt;   unit_id firm_id period x_1   x_2   firm_variance  fvar treated treat_prob</span></span>
-<span><span class="co">#&gt;     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span>       1     284      1 1     0               0.8 0.629       0      0.544</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span>       1     284      2 1     0               0.8 0.629       0      0.544</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span>       2     336      1 1     0               0.9 0.519       0      0.531</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span>       2     336      2 1     0               0.9 0.519       1      0.531</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span>       3     101      1 1     0               0.6 0.567       0      0.472</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span>       3     101      2 1     0               0.6 0.567       1      0.472</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 2 more variables: t_indicator &lt;dbl&gt;, Y &lt;dbl&gt;</span></span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">#install.packages(devtools)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://devtools.r-lib.org/" class="external-link">devtools</a></span><span class="op">)</span></span>
+<span><span class="co">#&gt; Loading required package: usethis</span></span>
+<span><span class="co">#&gt; Warning: package 'usethis' was built under R version 4.3.1</span></span>
+<span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"evelinagz/didcf"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Downloading GitHub repo evelinagz/didcf@HEAD</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">──</span> <span style="color: #00BBBB;">R CMD build</span> <span style="color: #00BBBB;">─────────────────────────────────────────────────────────────────</span></span></span>
+<span><span class="co">#&gt; * checking for file ‘/private/var/folders/t0/6c7vxwh54s78p4c_56_k8fz00000gn/T/RtmpBHVT2d/remotes153e725da1502/EvelinaGZ-didcf-100837d/DESCRIPTION’ ... OK</span></span>
+<span><span class="co">#&gt; * preparing ‘didcf’:</span></span>
+<span><span class="co">#&gt; * checking DESCRIPTION meta-information ... OK</span></span>
+<span><span class="co">#&gt; * checking for LF line-endings in source and make files and shell scripts</span></span>
+<span><span class="co">#&gt; * checking for empty or unneeded directories</span></span>
+<span><span class="co">#&gt; * building ‘didcf_1.0.0.0.tar.gz’</span></span>
+<span><span class="co">#&gt; Installing package into '/private/var/folders/t0/6c7vxwh54s78p4c_56_k8fz00000gn/T/Rtmpp0RH77/temp_libpathda0414609834'</span></span>
+<span><span class="co">#&gt; (as 'lib' is unspecified)</span></span></code></pre></div>
 </div>
-</div>
-<div class="section level2">
-<h2 id="estimate_didcf">Estimate_DiDCF<a class="anchor" aria-label="anchor" href="#estimate_didcf"></a>
-</h2>
+<div class="section level3">
+<h3 id="estimate_didcf">estimate_didcf<a class="anchor" aria-label="anchor" href="#estimate_didcf"></a>
+</h3>
 <p>The function <code>estimate_DiDCF</code> takes in your data and
 estimates difference-in-difference causal forests. Here is how you can
 use the function:</p>
@@ -132,7 +136,7 @@ use the function:</p>
 <span><span class="co">#&gt; Number of training samples: 6400 </span></span>
 <span><span class="co">#&gt; Variable importance: </span></span>
 <span><span class="co">#&gt;     1     2     3 </span></span>
-<span><span class="co">#&gt; 0.000 0.619 0.260</span></span></code></pre></div>
+<span><span class="co">#&gt; 0.000 0.622 0.256</span></span></code></pre></div>
 <p>The example can be found also in the help file related to the
 function. The inputs to the function are the following:</p>
 <ol style="list-style-type: decimal">
@@ -155,9 +159,9 @@ variable denoting time</li>
 <strong>unit_id</strong> - variable denoting unit id</li>
 </ol>
 </div>
-<div class="section level2">
-<h2 id="vip">vip<a class="anchor" aria-label="anchor" href="#vip"></a>
-</h2>
+<div class="section level3">
+<h3 id="vip">vip<a class="anchor" aria-label="anchor" href="#vip"></a>
+</h3>
 <p>The function <code>vip</code> is a handy tool to extract a table from
 the variable importance feature of the estimated causal forest. The
 table contains variable names and their respective importance values,
@@ -173,9 +177,33 @@ sorted in descending order.</p>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 3 × 2</span></span></span>
 <span><span class="co">#&gt;   variable      vip</span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> x_11        0.625</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> x_21        0.253</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> x_11        0.626</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> x_21        0.252</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> (Intercept) 0</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="example-data">Example Data<a class="anchor" aria-label="anchor" href="#example-data"></a>
+</h3>
+<p>The <code>example_data</code> dataset included in this package
+contains a simulated dataset tailored to the payroll example from the
+paper. Here is how you can load and view the dataset:</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Load the example dataset</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">example_data</span>, package <span class="op">=</span> <span class="st">"didcf"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># View the dataset</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">example_data</span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 11</span></span></span>
+<span><span class="co">#&gt;   unit_id firm_id period x_1   x_2   firm_variance  fvar treated treat_prob</span></span>
+<span><span class="co">#&gt;     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span>       1     284      1 1     0               0.8 0.629       0      0.544</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span>       1     284      2 1     0               0.8 0.629       0      0.544</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span>       2     336      1 1     0               0.9 0.519       0      0.531</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span>       2     336      2 1     0               0.9 0.519       1      0.531</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span>       3     101      1 1     0               0.6 0.567       0      0.472</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span>       3     101      2 1     0               0.6 0.567       1      0.472</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 2 more variables: t_indicator &lt;dbl&gt;, Y &lt;dbl&gt;</span></span></span></code></pre></div>
+</div>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>
